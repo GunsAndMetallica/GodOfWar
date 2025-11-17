@@ -1,0 +1,47 @@
+GodOfWar6_Prototype/
+├─ Config/
+├─ Content/
+│  ├─ Characters/
+│  │   ├─ Player/
+│  │   │   ├─ PlayerMesh.fbx
+│  │   │   ├─ Animations/   # Idle, Walk, Run, Attack, Throw, Dodge
+│  │   └─ Enemies/
+│  │       ├─ Grunt.fbx
+│  │       ├─ MiniBoss.fbx
+│  │       └─ Boss.fbx
+│  ├─ Weapons/
+│  │   ├─ Axe.fbx
+│  │   ├─ Blades.fbx
+│  │   └─ Shield.fbx
+│  ├─ Environments/
+│  │   ├─ SnowForest.uasset
+│  │   ├─ Temple.uasset
+│  │   └─ Mountains.uasset
+│  └─ Effects/
+│      ├─ Fire.uasset
+│      └─ Frost.uasset
+├─ Blueprints/
+│  ├─ PlayerBP/
+│  │   └─ BP_Player.uasset
+│  ├─ WeaponBP/
+│  │   ├─ BP_Axe.uasset
+│  │   ├─ BP_Blades.uasset
+│  │   └─ BP_Shield.uasset
+│  ├─ EnemyBP/
+│  │   ├─ BP_Grunt.uasset
+│  │   ├─ BP_MiniBoss.uasset
+│  │   └─ BP_Boss.uasset
+│  └─ SystemsBP/
+│      ├─ BP_RageMode.uasset
+│      └─ BP_CinematicTutorial.uasset
+├─ UI/
+│  ├─ HUD.uasset
+│  ├─ HealthBar.uasset
+│  └─ RageBar.uasset
+├─ Maps/
+│  └─ TutorialLevel.umap
+├─ Input/
+│  ├─ PCInput.ini
+│  ├─ MobileInput.ini
+│  └─ ControllerInput.ini
+└─ README.md
