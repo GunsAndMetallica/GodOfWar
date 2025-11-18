@@ -1,54 +1,5 @@
 #pragma once
-#include "CoreMinimal.h"
-#include "GameFramework/Character.h"
-#include "PlayerCharacter.generated.h"
 
-UCLASS()
-class GODOFWAR6_API APlayerCharacter : public ACharacter
-{
-    GENERATED_BODY()
-
-public:
-    APlayerCharacter();
-
-protected:
-    virtual void BeginPlay() override;
-
-public: 
-    virtual void Tick(float DeltaTime) override;
-    virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-    // Movement
-    void MoveForward(float Value);
-    void MoveRight(float Value);
-    void LookUp(float Value);
-    void Turn(float Value);
-    void JumpAction();
-    void Dodge();
-
-    // Combat
-    void AttackAxe();
-    void ThrowAxe();
-    void RecallAxe();
-    void AttackBlades();
-    void Block();
-    void RageMode();
-
-    // Health
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Player Stats")
-    float Health;
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Player Stats")
-    float MaxHealth;
-
-    // Weapon references
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class AWeaponBase* Axe;
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class AWeaponBase* Blades;
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class AWeaponBase* Shield;
-};
-#pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "CombatComponent.h"
@@ -59,47 +10,57 @@ UCLASS()
 class GODOFWAR6_API APlayerCharacter : public ACharacter
 {
     GENERATED_BODY()
+
 public:
     APlayerCharacter();
 
-    virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-    virtual void Tick(float DeltaTime) override;
     virtual void BeginPlay() override;
+    virtual void Tick(float DeltaTime) override;
+    virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-    // Movement
+    /* ------------------ MOVEMENT ------------------ */
     void MoveForward(float Value);
     void MoveRight(float Value);
-    void LookUp(float Value);
     void Turn(float Value);
+    void LookUp(float Value);
     void StartJump();
     void StopJump();
     void Dodge();
 
-    // Combat proxies
-    void PrimaryAttack();      // Axe / Blades primary
-    void SecondaryAttack();    // Light / Heavy
+    /* ------------------ COMBAT ------------------ */
+    void LightAttack();        // Primary attack
+    void HeavyAttack();        // Secondary attack
     void ThrowWeapon();
     void RecallWeapon();
     void BlockPressed();
     void BlockReleased();
     void ActivateRage();
 
-    // Camera
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    /* ------------------ COMPONENTS ------------------ */
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera")
     class USpringArmComponent* SpringArm;
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera")
     class UCameraComponent* Camera;
 
-    // Components
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Combat")
     UCombatComponent* CombatComp;
 
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Rage")
     URageMode* RageComp;
 
-    // Controller sensitivity
+    /* ------------------ STATS ------------------ */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Player Stats")
+    float Health = 100.f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Player Stats")
+    float MaxHealth = 100.f;
+
+    /* ------------------ CAMERA SETTINGS ------------------ */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera")
-    float TurnRate;
+    float TurnRate = 45.f;
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera")
-    float LookUpRate;
+    float LookUpRate = 45.f;
 };
+
